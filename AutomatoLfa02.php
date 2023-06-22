@@ -43,28 +43,28 @@ class Pilha
 $F = array(4);
 
 $delta = array(
-    array("0", "ε", "Z0", "1", "Z0"),
-    array("1", "ε", "Z0", "2", "Z0"),
-    array("2", "ε", "Z0", "3", "Z0"),
-    array("3", "ε", "Z0", "4", "ε"),
-    array("1", "ε", "programa", "1", "id(<declaracao>) <comandos>"),
-    array("1", "ε", "<comandos>", "1", "<comando> <comandos>"),
-    array("1", "ε", "<comandos>", "1", "<comando>"),
-    array("1", "ε", "<comando>", "1", "<declaracoes>"),
-    array("1", "ε", "<comando>", "1", "if"),
-    array("1", "ε", "<comando>", "1", "return"),
-    array("1", "ε", "<comando>", "1", "<atribuicao>"),
-    array("1", "ε", "<declaracoes>", "1", "id : <tipo>"),
-    array("1", "ε", "<tipo>", "1", "char"),
-    array("1", "ε", "<tipo>", "1", "int"),
-    array("1", "ε", "<tipo>", "1", "vetor"),
-    array("1", "ε", "if", "1", "if (<expressao>) { <comandos> } else { <comandos> }"),
-    array("1", "ε", "<expressao>", "1", "id <op> <constante>")
+    array("0", "E", "Z0", "1", "Z0"),
+    array("1", "E", "Z0", "2", "Z0"),
+    array("2", "E", "Z0", "3", "Z0"),
+    array("3", "E", "Z0", "4", "E"),
+    array("1", "E", "programa", "1", "id(<declaracao>) <comandos>"),
+    array("1", "E", "<comandos>", "1", "<comando> <comandos>"),
+    array("1", "E", "<comandos>", "1", "<comando>"),
+    array("1", "E", "<comando>", "1", "<declaracoes>"),
+    array("1", "E", "<comando>", "1", "if"),
+    array("1", "E", "<comando>", "1", "return"),
+    array("1", "E", "<comando>", "1", "<atribuicao>"),
+    array("1", "E", "<declaracoes>", "1", "id : <tipo>"),
+    array("1", "E", "<tipo>", "1", "char"),
+    array("1", "E", "<tipo>", "1", "int"),
+    array("1", "E", "<tipo>", "1", "vetor"),
+    array("1", "E", "if", "1", "if (<expressao>) { <comandos> } else { <comandos> }"),
+    array("1", "E", "<expressao>", "1", "id <op> <constante>")
 );
 
 $p = new Pilha();
 $p->empilha("Z0");
-$estado = 0; // estado inicial
+$estado = 0;
 $entrada = "programa id(id: int){ id: int; if (id > 0){ id = id / 2; } else{ id = 0; } return id;";
 
 $i = 0;
@@ -83,7 +83,7 @@ while ($i < strlen($entrada)) {
     }
     $estado = (int) $trans;
     $p->desempilha();
-    if ($trans !== "ε") {
+    if ($trans !== "E") {
         $elementos = explode(" ", $trans);
         for ($j = count($elementos) - 1; $j >= 0; $j--) {
             $p->empilha($elementos[$j]);
